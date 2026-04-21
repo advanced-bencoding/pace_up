@@ -5,7 +5,6 @@ class Activity extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return const Text("Activity View");
-    }
+  }
 }

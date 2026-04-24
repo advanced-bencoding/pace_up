@@ -7,33 +7,35 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 20,
-          children: [
-            const Text("PaceUp!"),
-            FilledButton(
-              child: const Text("Start Activity"),
-              onPressed: (){
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const Activity(),
-                  )
-                );
-              },
-            ),
-            FilledButton(
-              onPressed: (){},
-              child: const Text("View Configs")
-            ),
-            FilledButton(
-              onPressed: (){},
-              child: const Text("Activity History")
-            )
-          ],
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 20,
+            children: [
+              const Text("PaceUp!"),
+              FilledButton(
+                child: const Text("Start Activity"),
+                onPressed: (){
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const Activity(),
+                    )
+                  );
+                },
+              ),
+              FilledButton(
+                onPressed: (){},
+                child: const Text("View Configs")
+              ),
+              FilledButton(
+                onPressed: (){},
+                child: const Text("Activity History")
+              )
+            ],
+          ),
         ),
-      ),
+      ) 
     );
   }
 }

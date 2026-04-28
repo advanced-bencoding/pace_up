@@ -1,127 +1,134 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Material ThemeData — Dark
 // ─────────────────────────────────────────────────────────────────────────────
- 
+
 import 'package:flutter/material.dart';
 import 'package:pace_up/theme/colors.dart';
 import 'package:pace_up/theme/dimensions.dart';
 import 'package:pace_up/theme/typography.dart';
 
 ThemeData paceUpMaterialDark() {
-  final cs = ColorScheme.fromSeed(
-    seedColor: PaceUpDark.paceFast,
-    brightness: Brightness.dark,
-  ).copyWith(
-    surface: PaceUpDark.surface,
-    onSurface: PaceUpDark.textPrimary,
-    surfaceContainerHighest: PaceUpDark.surfaceElevated,
-    outline: PaceUpDark.border,
-    primary: PaceUpDark.paceFast,
-    onPrimary: PaceUpDark.background,
-    error: PaceUpDark.paceSlow,
-    onError: PaceUpDark.textPrimary,
-  );
- 
+  final darkThemeColors = PaceUpDark();
+  final cs =
+      ColorScheme.fromSeed(
+        seedColor: darkThemeColors.paceFast,
+        brightness: Brightness.dark,
+      ).copyWith(
+        surface: darkThemeColors.surface,
+        onSurface: darkThemeColors.textPrimary,
+        surfaceContainerHighest: darkThemeColors.surfaceElevated,
+        outline: darkThemeColors.border,
+        primary: darkThemeColors.paceFast,
+        onPrimary: darkThemeColors.background,
+        error: darkThemeColors.paceSlow,
+        onError: darkThemeColors.textPrimary,
+      );
+
   return ThemeData(
     useMaterial3: true,
     colorScheme: cs,
-    scaffoldBackgroundColor: PaceUpDark.background,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: PaceUpDark.background,
-      foregroundColor: PaceUpDark.textPrimary,
+    scaffoldBackgroundColor: darkThemeColors.background,
+    appBarTheme: AppBarTheme(
+      backgroundColor: darkThemeColors.background,
+      foregroundColor: darkThemeColors.textPrimary,
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: false,
       titleTextStyle: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: PaceUpDark.textPrimary,
+        color: darkThemeColors.textPrimary,
       ),
     ),
-    dividerTheme: const DividerThemeData(
-      color: PaceUpDark.border,
+    dividerTheme: DividerThemeData(
+      color: darkThemeColors.border,
       thickness: PaceUpSpacing.dividerWidth,
       space: 0,
     ),
     cardTheme: CardThemeData(
-      color: PaceUpDark.surface,
+      color: darkThemeColors.surface,
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(PaceUpRadius.card),
-        side: const BorderSide(color: PaceUpDark.border, width: 0.5),
+        side: BorderSide(color: darkThemeColors.border, width: 0.5),
       ),
       margin: EdgeInsets.zero,
     ),
-    iconTheme: const IconThemeData(
-      color: PaceUpDark.textSecondary,
-      size: 20,
-    ),
-    textTheme: TextTheme(
-      displayLarge: PaceUpTextStyles.paceHero,
-      titleMedium: PaceUpTextStyles.metricValue,
-      bodySmall: PaceUpTextStyles.splitRow,
-      labelSmall: PaceUpTextStyles.label,
-    ).apply(
-      bodyColor: PaceUpDark.textPrimary,
-      displayColor: PaceUpDark.textPrimary,
-    ),
-    listTileTheme: const ListTileThemeData(
+    iconTheme: IconThemeData(color: darkThemeColors.textSecondary, size: 20),
+    textTheme:
+        TextTheme(
+          displayLarge: PaceUpTextStyles.paceHero,
+          titleMedium: PaceUpTextStyles.metricValue,
+          bodySmall: PaceUpTextStyles.splitRow,
+          labelSmall: PaceUpTextStyles.label,
+        ).apply(
+          bodyColor: darkThemeColors.textPrimary,
+          displayColor: darkThemeColors.textPrimary,
+        ),
+    listTileTheme: ListTileThemeData(
       tileColor: Colors.transparent,
-      textColor: PaceUpDark.textPrimary,
+      textColor: darkThemeColors.textPrimary,
       minVerticalPadding: 8,
     ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: PaceUpDark.surface,
-      selectedItemColor: PaceUpDark.paceFast,
-      unselectedItemColor: PaceUpDark.textTertiary,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: darkThemeColors.surface,
+      selectedItemColor: darkThemeColors.paceFast,
+      unselectedItemColor: darkThemeColors.textTertiary,
       elevation: 0,
       type: BottomNavigationBarType.fixed,
     ),
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: PaceUpDark.surface,
-      indicatorColor: PaceUpDark.paceFastBg,
+      backgroundColor: darkThemeColors.surface,
+      indicatorColor: darkThemeColors.paceFastBg,
       iconTheme: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return const IconThemeData(color: PaceUpDark.paceFast, size: 22);
+          return IconThemeData(color: darkThemeColors.paceFast, size: 22);
         }
-        return const IconThemeData(color: PaceUpDark.textTertiary, size: 22);
+        return IconThemeData(color: darkThemeColors.textTertiary, size: 22);
       }),
     ),
     snackBarTheme: SnackBarThemeData(
-      backgroundColor: PaceUpDark.surfaceElevated,
-      contentTextStyle: const TextStyle(color: PaceUpDark.textPrimary, fontSize: 13),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(PaceUpRadius.small)),
+      backgroundColor: darkThemeColors.surfaceElevated,
+      contentTextStyle: TextStyle(
+        color: darkThemeColors.textPrimary,
+        fontSize: 13,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(PaceUpRadius.small),
+      ),
       behavior: SnackBarBehavior.floating,
     ),
   );
 }
- 
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Material ThemeData — Light
 // ─────────────────────────────────────────────────────────────────────────────
- 
+
 ThemeData paceUpMaterialLight() {
-  final cs = ColorScheme.fromSeed(
-    seedColor: PaceUpLight.paceFast,
-    brightness: Brightness.light,
-  ).copyWith(
-    surface: PaceUpLight.surface,
-    onSurface: PaceUpLight.textPrimary,
-    surfaceContainerHighest: PaceUpLight.surfaceElevated,
-    outline: PaceUpLight.border,
-    primary: PaceUpLight.paceFast,
-    onPrimary: Colors.white,
-    error: PaceUpLight.paceSlow,
-    onError: Colors.white,
-  );
- 
+  final lightThemeColors = PaceUpLight();
+  final cs =
+      ColorScheme.fromSeed(
+        seedColor: lightThemeColors.paceFast,
+        brightness: Brightness.light,
+      ).copyWith(
+        surface: lightThemeColors.surface,
+        onSurface: lightThemeColors.textPrimary,
+        surfaceContainerHighest: lightThemeColors.surfaceElevated,
+        outline: lightThemeColors.border,
+        primary: lightThemeColors.paceFast,
+        onPrimary: Colors.white,
+        error: lightThemeColors.paceSlow,
+        onError: Colors.white,
+      );
+
   return ThemeData(
     useMaterial3: true,
     colorScheme: cs,
-    scaffoldBackgroundColor: PaceUpLight.background,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: PaceUpLight.surface,
-      foregroundColor: PaceUpLight.textPrimary,
+    scaffoldBackgroundColor: lightThemeColors.background,
+    appBarTheme: AppBarTheme(
+      backgroundColor: lightThemeColors.surface,
+      foregroundColor: lightThemeColors.textPrimary,
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: false,
@@ -129,62 +136,65 @@ ThemeData paceUpMaterialLight() {
       titleTextStyle: TextStyle(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: PaceUpLight.textPrimary,
+        color: lightThemeColors.textPrimary,
       ),
     ),
-    dividerTheme: const DividerThemeData(
-      color: PaceUpLight.divider,
+    dividerTheme: DividerThemeData(
+      color: lightThemeColors.divider,
       thickness: PaceUpSpacing.dividerWidth,
       space: 0,
     ),
     cardTheme: CardThemeData(
-      color: PaceUpLight.surface,
+      color: lightThemeColors.surface,
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(PaceUpRadius.card),
-        side: const BorderSide(color: PaceUpLight.border, width: 0.5),
+        side: BorderSide(color: lightThemeColors.border, width: 0.5),
       ),
       margin: EdgeInsets.zero,
     ),
-    iconTheme: const IconThemeData(
-      color: PaceUpLight.textSecondary,
-      size: 20,
-    ),
-    textTheme: TextTheme(
-      displayLarge: PaceUpTextStyles.paceHero,
-      titleMedium: PaceUpTextStyles.metricValue,
-      bodySmall: PaceUpTextStyles.splitRow,
-      labelSmall: PaceUpTextStyles.label,
-    ).apply(
-      bodyColor: PaceUpLight.textPrimary,
-      displayColor: PaceUpLight.textPrimary,
-    ),
-    listTileTheme: const ListTileThemeData(
+    iconTheme: IconThemeData(color: lightThemeColors.textSecondary, size: 20),
+    textTheme:
+        TextTheme(
+          displayLarge: PaceUpTextStyles.paceHero,
+          titleMedium: PaceUpTextStyles.metricValue,
+          bodySmall: PaceUpTextStyles.splitRow,
+          labelSmall: PaceUpTextStyles.label,
+        ).apply(
+          bodyColor: lightThemeColors.textPrimary,
+          displayColor: lightThemeColors.textPrimary,
+        ),
+    listTileTheme: ListTileThemeData(
       tileColor: Colors.transparent,
-      textColor: PaceUpLight.textPrimary,
+      textColor: lightThemeColors.textPrimary,
       minVerticalPadding: 8,
     ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: PaceUpLight.surface,
-      selectedItemColor: PaceUpLight.paceFast,
-      unselectedItemColor: PaceUpLight.textTertiary,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: lightThemeColors.surface,
+      selectedItemColor: lightThemeColors.paceFast,
+      unselectedItemColor: lightThemeColors.textTertiary,
       elevation: 0,
       type: BottomNavigationBarType.fixed,
     ),
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: PaceUpLight.surface,
-      indicatorColor: PaceUpLight.paceFastBg,
+      backgroundColor: lightThemeColors.surface,
+      indicatorColor: lightThemeColors.paceFastBg,
       iconTheme: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return const IconThemeData(color: PaceUpLight.paceFast, size: 22);
+          return IconThemeData(color: lightThemeColors.paceFast, size: 22);
         }
-        return const IconThemeData(color: PaceUpLight.textTertiary, size: 22);
+        return IconThemeData(color: lightThemeColors.textTertiary, size: 22);
       }),
     ),
     snackBarTheme: SnackBarThemeData(
-      backgroundColor: PaceUpLight.surfaceElevated,
-      contentTextStyle: const TextStyle(color: PaceUpLight.textPrimary, fontSize: 13),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(PaceUpRadius.small)),
+      backgroundColor: lightThemeColors.surfaceElevated,
+      contentTextStyle: TextStyle(
+        color: lightThemeColors.textPrimary,
+        fontSize: 13,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(PaceUpRadius.small),
+      ),
       behavior: SnackBarBehavior.floating,
     ),
   );

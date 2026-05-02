@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pace_up/theme/colors.dart';
+import 'package:pace_up/ui/theme/colors.dart';
 
 Color paceColor(int deltaSeconds, PaceUpColors colors) {
   if (deltaSeconds < -15) return colors.paceFast;

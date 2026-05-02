@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pace_up/features/activity/activity.dart';
+import 'package:pace_up/ui/features/activity/activity.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

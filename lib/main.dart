@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pace_up/home.dart';
-import 'package:pace_up/theme/material_theme.dart';
+import 'package:pace_up/ui/home.dart';
+import 'package:pace_up/ui/theme/material_theme.dart';
 
 void main() {
   runApp(const MainApp());

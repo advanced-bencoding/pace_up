@@ -3,9 +3,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import 'package:flutter/material.dart';
-import 'package:pace_up/theme/colors.dart';
-import 'package:pace_up/theme/dimensions.dart';
-import 'package:pace_up/theme/typography.dart';
+import 'package:pace_up/ui/theme/colors.dart';
+import 'package:pace_up/ui/theme/dimensions.dart';
+import 'package:pace_up/ui/theme/typography.dart';
 
 ThemeData paceUpMaterialDark() {
   final darkThemeColors = PaceUpDark();

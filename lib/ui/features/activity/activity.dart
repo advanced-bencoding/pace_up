@@ -4,9 +4,9 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:pace_up/data/location.dart';
-import 'package:pace_up/theme/colors.dart';
-import 'package:pace_up/theme/dimensions.dart';
-import 'package:pace_up/theme/typography.dart';
+import 'package:pace_up/ui/theme/colors.dart';
+import 'package:pace_up/ui/theme/dimensions.dart';
+import 'package:pace_up/ui/theme/typography.dart';
 
 class Activity extends StatefulWidget {
   const Activity({super.key});

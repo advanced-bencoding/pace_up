@@ -14,9 +14,16 @@ step 9 - QOL units: miles/kms
 
 ----------------PHASE 1-------------------------
 
-[] read data from sensors every second
-[] maintain queue of 10 inputs
-[] start displaying average every second as soon as we have 10 inputs
+[x] read data from sensors every second
+[x] maintain queue of 10 inputs
+[x] start displaying average every second as soon as we have 10 inputs
+
+----------------TRANSITION----------------------
+
+observations: messy code, all state being tracked locally. no home scaffold layout, everything copied on navigation. messy code, business logic and ui.
+[] try to separate biz logic and ui
+[] better navigation style?
+[] do i need state management library?
 
 ----------------PHASE 2-------------------------
 

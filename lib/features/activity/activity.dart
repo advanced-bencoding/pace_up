@@ -22,11 +22,15 @@ class _ActivityState extends State<StatefulWidget> {
   Timer? _stopWatchTimer;
   final Stopwatch _stopWatch = Stopwatch();
   final _positions = Queue<Position>();
+  bool isRecording = false;
   double _totalDistance = 0.0;
   Duration _elapsedSeconds = Duration(seconds: 1);
   Pace _pace = Pace(0, 0);
 
   void startTracking() {
+    setState(() {
+      isRecording = true;
+    });
     _stopWatch.start();
     _stopWatchTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
@@ -91,6 +95,9 @@ class _ActivityState extends State<StatefulWidget> {
       _locationTrackingTimer?.cancel();
       _stopWatchTimer?.cancel();
       _locationTrackingTimer = null;
+      setState(() {
+        isRecording = false;
+      });
     }
   }
 
@@ -116,6 +123,8 @@ class _ActivityState extends State<StatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final colors = PaceUpColors.of(context);
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -124,17 +133,50 @@ class _ActivityState extends State<StatefulWidget> {
             vertical: PaceUpSpacing.gapSm,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              PaceDisplay(_pace),
+              Text(
+                "CURRENT PACE",
+                style: PaceUpTextStyles.label.copyWith(
+                  color: colors.textSecondary,
+                ),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  PaceDisplay(_pace),
+                  Padding(
+                    padding: EdgeInsetsDirectional.symmetric(horizontal: 5),
+                    child: Text(
+                      "/km",
+                      style: PaceUpTextStyles.metricValue.copyWith(
+                        color: colors.textSecondary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               Text(
                 "Elapsed: ${_elapsedSeconds.inMinutes} mins ${_elapsedSeconds.inSeconds % 60} secs",
               ),
-              SizedBox(height: 80, child: ListView(children: [])),
-              IconButton(
-                onPressed: () {
-                  onStartStop();
-                },
-                icon: Icon(Icons.start),
+              Expanded(child: ListView(children: [])),
+              Center(
+                child: IconButton.outlined(
+                  onPressed: () {
+                    onStartStop();
+                  },
+                  iconSize: 48,
+                  icon: Padding(
+                    padding: const EdgeInsetsGeometry.all(0),
+                    child: Icon(
+                      isRecording ? Icons.stop : Icons.play_arrow,
+                      color: isRecording ? colors.stopRed : Colors.black,
+                    ),
+                  ),
+                  style: IconButton.styleFrom(
+                    backgroundColor: colors.surfaceElevated,
+                  ),
+                ),
               ),
             ],
           ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pace_up/ui/features/activity/activity.dart';
+import 'package:pace_up/ui/features/activity/view/activity.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,26 +16,21 @@ class Home extends StatelessWidget {
               const Text("PaceUp!"),
               FilledButton(
                 child: const Text("Start Activity"),
-                onPressed: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const Activity(),
-                    )
-                  );
+                onPressed: () {
+                  Navigator.of(
+                    context,
+                  ).push(MaterialPageRoute(builder: (context) => Activity()));
                 },
               ),
+              FilledButton(onPressed: () {}, child: const Text("View Configs")),
               FilledButton(
-                onPressed: (){},
-                child: const Text("View Configs")
+                onPressed: () {},
+                child: const Text("Activity History"),
               ),
-              FilledButton(
-                onPressed: (){},
-                child: const Text("Activity History")
-              )
             ],
           ),
         ),
-      ) 
+      ),
     );
   }
 }

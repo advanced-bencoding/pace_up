@@ -18,12 +18,12 @@ class ActivityViewModel extends ChangeNotifier {
     : _gpsService = gpsService;
 
   void startTracking() {
-    devicePositionHandler();
+    _devicePositionHandler();
     isRecording = true;
     notifyListeners();
   }
 
-  void devicePositionHandler() {
+  void _devicePositionHandler() {
     _locationTrackingTimer = Timer.periodic(Duration(seconds: 2), (timer) {
       _gpsService
           .getDevicePostion()

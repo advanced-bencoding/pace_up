@@ -21,7 +21,7 @@ step 9 - QOL units: miles/kms
 ----------------TRANSITION----------------------
 
 observations: messy code, all state being tracked locally. no home scaffold layout, everything copied on navigation. messy code, business logic and ui.
-[] try to separate biz logic and ui
+[x] try to separate biz logic and ui
 [] better navigation style?
 [] do i need state management library?
 
@@ -38,3 +38,8 @@ observations: messy code, all state being tracked locally. no home scaffold layo
 
 [] custom splits
 [] pace target per split
+
+
+
+Identified bugs:
+[] what if start tracking gps fails cuz permission. stopwatch keeps running; FIX -> req permission before activity can be started.

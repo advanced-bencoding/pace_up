@@ -4,18 +4,60 @@ import 'package:flutter/material.dart';
 import 'package:pace_up/ui/features/activity/model/activity_models.dart';
 import 'package:pace_up/ui/features/activity/service/gps_service.dart';
 
-class ActivityViewModel extends ChangeNotifier {
-  final GpsService _gpsService;
-  final List<DevicePosition> _coordinates = [];
-  late Timer _locationTrackingTimer;
-
-  String? error;
-  Pace currentPace = Pace(0, 0);
-  int secondsElapsed = 0;
-  bool isRecording = false;
+class ActivityViewModel {
+  final GpsState gpsState;
+  final TimeState timeState = TimeState();
 
   ActivityViewModel({required GpsService gpsService})
-    : _gpsService = gpsService;
+    : gpsState = GpsState(gpsService: gpsService);
+
+  void startRecordingActivity() {
+    gpsState.startTracking();
+    timeState.startTimer();
+  }
+
+  void stopRecordingActivity() {
+    gpsState.stopTracking();
+    timeState.stopTimer();
+  }
+}
+
+class TimeState extends ChangeNotifier {
+  int secondsElapsed = 0;
+  final Stopwatch _stopwatch = Stopwatch();
+  Timer? _stopWatchTimer;
+
+  void startTimer() {
+    _stopwatch.start();
+    _stopWatchTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      secondsElapsed = _stopwatch.elapsed.inSeconds;
+      notifyListeners();
+    });
+  }
+
+  void stopTimer() {
+    _stopwatch.stop();
+    _stopWatchTimer?.cancel();
+  }
+
+  @override
+  void dispose() {
+    _stopwatch.stop();
+    _stopWatchTimer?.cancel();
+    super.dispose();
+  }
+}
+
+class GpsState extends ChangeNotifier {
+  final GpsService _gpsService;
+  final List<DevicePosition> _coordinates = [];
+  Timer? _locationTrackingTimer;
+
+  Pace currentPace = Pace(0, 0);
+  String? error;
+  bool isRecording = false;
+
+  GpsState({required GpsService gpsService}) : _gpsService = gpsService;
 
   void startTracking() {
     _devicePositionHandler();
@@ -54,7 +96,7 @@ class ActivityViewModel extends ChangeNotifier {
   }
 
   void stopTracking() {
-    _locationTrackingTimer.cancel();
+    _locationTrackingTimer?.cancel();
     isRecording = false;
     notifyListeners();
   }
@@ -77,5 +119,11 @@ class ActivityViewModel extends ChangeNotifier {
     }
 
     return Pace(minutes, seconds);
+  }
+
+  @override
+  void dispose() {
+    _locationTrackingTimer?.cancel();
+    super.dispose();
   }
 }
